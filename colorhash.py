@@ -4,7 +4,7 @@ import hashlib
 import png
 
 def make_remap(rader):
-	"""skapar en dict för att matrcha ett tecken från ett hash med ett element i en lista"""
+	"""skapar en dict fÃ¶r att matrcha ett tecken frÃ¥n ett hash med ett element i en lista"""
 	c = 0
 	t = {}
 	
@@ -25,10 +25,10 @@ def colorhash(string_to_hash):
 	345
 	678
 	
-	med två parametrar,
+	med tvÃ¥ parametrar,
 	
 	rutor: antalet rutor per rad
-	storlek hur många tecken bred en ruta är
+	storlek hur mÃ¥nga tecken bred en ruta Ã¤r
 	
 	"""
 	
@@ -36,10 +36,10 @@ def colorhash(string_to_hash):
 	storlek = 20
 
 
-	# hashet vi anväder för att skapa bilderna
+	# hashet vi anvÃ¤der fÃ¶r att skapa bilderna
 	hashet = hashlib.sha1(string_to_hash).hexdigest()
 	
-	#Färg palleterna som används
+	#FÃ¤rg palleterna som anvÃ¤nds
 	farger = [ [[104, 138, 111],[128, 150, 111],[216, 181, 115],[192, 143, 100]],
 			[[247, 224, 220],[242, 213, 204],[234, 201, 183],[230, 190, 163]],
 			[[245, 202, 91],[245, 104, 91],[186, 224, 61],[156, 210, 241]] ]
@@ -51,7 +51,7 @@ def colorhash(string_to_hash):
 	farger = farger[pallet_remap[hashet[0]]]
 	
 
-	# lägger till en mörkare variant av alla färger som finns i färgpalleten
+	# lÃ¤gger till en mÃ¶rkare variant av alla fÃ¤rger som finns i fÃ¤rgpalleten
 	t = []
 	for i in farger:
 	    s = [i[0]+13, i[1]+13, i[2]+13]
@@ -65,10 +65,10 @@ def colorhash(string_to_hash):
 	farger += t
 	
 	
-	#dict för att matcha vilket tecken i sha1 hashet som ska bytas ut mot vilken färg 
+	#dict fÃ¶r att matcha vilket tecken i sha1 hashet som ska bytas ut mot vilken fÃ¤rg 
 	hash_farger_remap = make_remap(farger)
 	
-	# breddden och höjden png.py behöver detta
+	# breddden och hÃ¶jden png.py behÃ¶ver detta
 	size = rutor * storlek
 	
 	temp = []
@@ -82,7 +82,7 @@ def colorhash(string_to_hash):
 	        t2 = hash_farger_remap[t1]
 	        p += farger[t2]
 	        
-		# repeterar raden vi skapade som inehåller rätt andelar av varje färg för att bilda rutor
+		# repeterar raden vi skapade som inehÃ¥ller rÃ¤tt andelar av varje fÃ¤rg fÃ¶r att bilda rutor
 	    for printrow in range(0, storlek):
 	        temp.append(p)
 	
